@@ -1,30 +1,24 @@
-# Ahm Akram — WordPress portfolio theme
-
-Installable custom theme for AHM Akram, an AI-driven performance marketing and SEO specialist in Dhaka. It ships a responsive, crawlable Classic portfolio, editable proof numbers, case-study content types, an optional procedural canvas flight, and a protected inquiry endpoint. No client names, quotes, or campaign results are generated.
+# Ahm Akram WordPress Theme
 
 ## Install
-1. Zip the `ahm-akram/` directory, then in WordPress go to **Appearance → Themes → Add New → Upload Theme**. Alternatively copy it to `wp-content/themes/` and activate **Ahm Akram**.
-2. Set a static front page (Settings → Reading) if desired. Set the site email destination in **Settings → Ahm Akram Portfolio settings → Contact email**; otherwise WordPress admin email is used.
-3. Set your booking URL, WhatsApp number, email, social URLs and role in the theme settings. Configure SMTP through a reputable mail provider/plugin for reliable delivery.
-4. Add a featured image and verified editorial details to case studies. This theme works without ACF; custom meta keys are registered in REST and stored natively. Themes do not support creating downloadable ZIP artifacts from GitHub; zip the theme folder for installation.
+Zip the `ahm-akram` folder and upload it in **Appearance → Themes**. Activate it, then set a static front page if desired.
+
+## Configure
+Open **Settings → Ahm Akram** to edit the role, headline, proof values, social links, booking URL, WhatsApp, email, accent color, seed, placeholder count and featured-order behavior.
 
 ## Content
-- **Case Studies**: add a title, body, excerpt and featured image. In the native custom fields/meta editor or REST API, set `_ahm_client`, `_ahm_industry`, `_ahm_services`, `_ahm_channels`, `_ahm_headline_kpi`, `_ahm_challenge`, `_ahm_strategy`, `_ahm_what_i_did`, `_ahm_results`, `_ahm_tools`, `_ahm_year`, `_ahm_featured` (`1` for selected), and `_ahm_manual_order`. Add only verified client information and metrics. The theme registers `case_study` and publishes `/results/` archives.
-- **Creatives**: add title, image, year in `_ahm_year`, and optional related case slug in `_ahm_linked_case`. These can be extended into the flight data feed as your archive grows.
-- **Testimonials**: create entries with approved quote content and client/company as title/meta. Until then, the homepage displays clearly marked editorial placeholders that must be replaced before publication.
-- Hero heading and description, role, all eight proof values, social links, booking, WhatsApp, color, seed, placeholder threshold/toggle, analytics IDs and webhook are under **Settings → Ahm Akram Portfolio**. Current supplied proof values are defaults: 5+ years; $50,000+ spend; 126 million impressions; 45 million+ clicks; 1 million leads; 80,000+ sales; $164,389 revenue; ~3.3x ROAS. The 3.3x is formatted as ~3.3x. Footnote date updates to current year.
+Create **Case Studies** for featured and archive content. Native meta fields include `_ahm_client`, `_ahm_industry`, `_ahm_services`, `_ahm_channels`, `_ahm_headline_kpi`, `_ahm_kpi_list`, `_ahm_challenge`, `_ahm_strategy`, `_ahm_what_i_did`, `_ahm_results`, `_ahm_tools`, `_ahm_quote`, `_ahm_quote_author`, `_ahm_quote_company`, `_ahm_year`, `_ahm_featured`, `_ahm_manual_order`, `_ahm_linked_case`, and `_ahm_before_after`.
 
-## Flight, links, and fallback
-The procedural module `assets/js/scene.js` uses a documented Mulberry32 seeded generator and draws abstract, generic-label-only KPI cards into one canvas. Seed links (`?seed=1234`) reproduce a layout; **Shuffle** updates the seed in the URL. Abstract visuals do not claim client results. Placeholder threshold is adjustable (default 40) and can be disabled. Featured cards are browser-shuffled when enabled, without PHP `orderby=rand`. The current canvas is a lightweight perspective corridor, not a Three.js scene with streamed real-image textures; the server-rendered, accessible portfolio is the reliable production baseline and the scene degrades gracefully. “Everything” sets `?mode=everything`; `/ ?open=contact`, `about`, and `services` deep links are compatible with the page anchors when using `#contact`, etc. Case studies have crawlable detail URLs.
+Use only verified client names and metrics. Add `1` to `_ahm_featured` for the Results panel. The supplied totals are defaults: 5+ years, $50,000+ ad spend, 126 million impressions, 45 million+ clicks, 1 million leads, 80,000+ sales, $164,389 revenue and ~3.3x ROAS. The footnote reads 2020–the current year.
 
-Reduced-motion and constrained mobile devices disable the animated canvas. The content always remains available in Classic view. The current build does not implement modal overlay panels, focus trapping, touch-flight gestures, or advanced three-dimensional asset streaming; these are suitable next-stage enhancements. The inquiry form is a same-origin REST endpoint with WordPress nonce, honeypot, a per-IP transient limit (five/hour), validation, mail notification and optional webhook. Configure a WAF and SMTP; contact forms are not a substitute for a dedicated anti-abuse service.
+## Placeholder and testimonial policy
+Testimonial cards and placeholder portfolio copy are visibly marked and must be replaced. Never publish invented clients or campaign results.
 
-## SEO, performance and deployment
-- Uses semantic server-rendered HTML, title-tag support, a concise meta description and Person JSON-LD with Dhaka/BD address. Install an SEO plugin for canonical controls, XML sitemap, Open Graph/Twitter cards, breadcrumbs, FAQ/Article/Review schema and page-specific metadata.
-- Add a verified 1200×630 social image via SEO plugin or child-theme customization. Review legal/privacy and cookie-consent requirements before installing analytics or marketing pixels. GA4/GTM fields are configuration placeholders; no tracking pixels are silently injected.
-- Use image optimization (WebP/AVIF), responsive thumbnails, page caching and a CDN/edge cache. For US/EU audiences, select a reputable global WordPress host with Singapore/Europe/US edge delivery, Cloudflare CDN, and SMTP provider with global delivery. Dhaka origin hosting is not required for fast global delivery.
-- Test caching/minification/delay-js settings against `assets/js/scene.js` and `site.js`; exclude them from aggressive delay if interactions break. WordPress REST requests need to remain available. Purge page/CDN caches after option or content changes.
-- QA before launch: replace testimonial placeholders; verify no fabricated client data; set real destination email and test SMTP/form and rate limit; test fixed-seed links and Shuffle; test reduced motion and keyboard use; verify classic content with JS disabled; test mobile and caching plugin; check SEO plugin metadata/sitemap; run Lighthouse and accessibility audit.
+## Contact
+Set **Contact email** and configure SMTP. The REST form at `/wp-json/ahm-akram/v1/contact` uses nonce verification, honeypot, server validation and five submissions per IP per hour.
 
-## Stages / known scope
-Stage 1 (theme skeleton, native content types, responsive Classic view), Stage 2 (contact + booking links and settings), Stage 3 (seeded procedural canvas, abstract cards, reduced-motion fallback), and Stage 4 (baseline Person schema, SEO/performance notes and QA checklist) are represented. Full Three.js camera flight, client-side project overlays/focus trapping, complete real-content texture streaming, comprehensive schema, cookie consent UI, and bundled install ZIP are not implemented in this initial theme. Those require additional asset/design inputs and QA rather than being represented as finished features.
+## SEO and performance
+The theme has a crawlable front page and case-study URLs, title-tag support and Person JSON-LD. Use an SEO plugin for canonical URLs, XML sitemap, breadcrumbs and complete social cards. Optimize images, use caching/CDN, and use a global host/edge network for US/EU delivery. Keep JavaScript deferred and test caching plugins before launch.
+
+## Production scope
+This repository contains a complete responsive Classic theme foundation, CPTs, native meta, theme settings, REST contact handling and no fabricated case-study/testimonial data. A full Three.js Lenis/GSAP flight, overlays, texture streaming and full schema suite are staged enhancements rather than simulated through fake content.
